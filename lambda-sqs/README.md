@@ -1,1 +1,1 @@
-Simple terraform module of an aws lambda function
+Terraform composite module of both lambda and sqs modules
