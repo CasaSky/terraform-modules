@@ -13,7 +13,3 @@ output "runtime" {
 output "filepath" {
   value = var.filepath
 }
-
-output "arn" {
-  value = aws_lambda_function.lambda.arn
-}
