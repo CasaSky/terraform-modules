@@ -1,0 +1,1 @@
+Simple terraform module of an aws sqs queue
