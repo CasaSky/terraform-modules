@@ -15,19 +15,15 @@ resource "aws_iam_role" "lambda_execution" {
   })
 }
 
-locals {
-  filepath = "${path.module}/../../${var.source_file}"
-}
-
 resource "aws_lambda_function" "lambda" {
-  filename      = local.filepath
+  filename      = var.filepath
   function_name = var.function_name
   role          = aws_iam_role.lambda_execution.arn
 
   # package.Class
   handler       = var.handler
 
-  source_code_hash = filebase64sha256(local.filepath)
+  source_code_hash = filebase64sha256(var.filepath)
 
   runtime = var.runtime
 }

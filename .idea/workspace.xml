@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d75a9aab-b463-420e-9d21-6590c5ef5861" name="Default Changelist" comment="" />
+    <list default="true" id="d75a9aab-b463-420e-9d21-6590c5ef5861" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +43,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/lambda" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="gye987e9" />
@@ -67,6 +69,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sqs" />
       <recent name="$PROJECT_DIR$/lambda_module" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -108,7 +111,7 @@
       <workItem from="1634395829237" duration="92000" />
       <workItem from="1634395929360" duration="15000" />
       <workItem from="1634395975659" duration="17000" />
-      <workItem from="1634396020396" duration="2376000" />
+      <workItem from="1634396020396" duration="2681000" />
     </task>
     <servers />
   </component>

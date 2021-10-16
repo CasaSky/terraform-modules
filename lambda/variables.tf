@@ -10,6 +10,6 @@ variable "runtime" {
   description = "The runtime identifier of your function"
 }
 
-variable "source_file" {
+variable "filepath" {
   description = "The path of your function deployment package"
 }

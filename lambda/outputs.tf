@@ -10,6 +10,6 @@ output "runtime" {
   value = var.runtime
 }
 
-output "source_file" {
-  value = var.source_file
+output "filepath" {
+  value = var.filepath
 }
