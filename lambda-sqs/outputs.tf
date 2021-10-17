@@ -17,3 +17,7 @@ output "filepath" {
 output "sqs_arn" {
   value = module.sqs.arn
 }
+
+output "sqs_id" {
+  value = module.sqs.id
+}
