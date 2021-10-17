@@ -1,3 +1,10 @@
+locals {
+  policy_arn_list = [
+    "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole",
+    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+  ]
+}
+
 module "lambda" {
   source = "../lambda"
 
@@ -12,8 +19,7 @@ module "lambda" {
   tags = var.tags
 
   depends_on = [
-    aws_iam_role_policy_attachment.cloudwatch_logs,
-    aws_iam_role_policy_attachment.sqs,
+    aws_iam_role_policy_attachment.this,
     aws_cloudwatch_log_group.this
   ]
 }
@@ -49,14 +55,10 @@ resource "aws_cloudwatch_log_group" "this" {
   retention_in_days = 7
 }
 
-resource "aws_iam_role_policy_attachment" "sqs" {
+resource "aws_iam_role_policy_attachment" "this" {
   role       = module.lambda.lambda_execution_role_name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole"
-}
-
-resource "aws_iam_role_policy_attachment" "cloudwatch_logs" {
-  role       = module.lambda.lambda_execution_role_name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+  count      = length(local.policy_arn_list)
+  policy_arn = local.policy_arn_list[count.index]
 }
 
 resource "aws_lambda_event_source_mapping" "this" {
