@@ -20,7 +20,7 @@ module "sqs" {
   delay_seconds             = var.delay_seconds
   message_retention_seconds = var.message_retention_seconds
   redrive_policy = jsonencode({
-    deadLetterTargetArn = module.sqs_dlq.name
+    deadLetterTargetArn = module.sqs_dlq.arn
     maxReceiveCount     = 5
   })
 
