@@ -13,7 +13,8 @@ module "lambda" {
 
   depends_on = [
     aws_iam_role_policy_attachment.cloudwatch_logs,
-    aws_cloudwatch_log_group.this,
+    aws_iam_role_policy_attachment.sqs,
+    aws_cloudwatch_log_group.this
   ]
 }
 
