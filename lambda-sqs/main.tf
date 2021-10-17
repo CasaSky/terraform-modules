@@ -1,5 +1,6 @@
 module "lambda" {
   source = "../lambda"
+
   function_name = var.function_name
   filepath = var.filepath
   handler = var.handler
@@ -8,7 +9,20 @@ module "lambda" {
 
 module "sqs" {
   source = "../sqs"
+
   name = var.function_name
+  delay_seconds = var.delay_seconds
+  redrive_policy = jsonencode({
+    deadLetterTargetArn = module.sqs_dlq.name
+    maxReceiveCount     = 5
+  })
+}
+
+module "sqs_dlq" {
+  source = "../sqs"
+
+  name = var.function_name
+  delay_seconds = var.delay_seconds
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_sqs_role_policy" {

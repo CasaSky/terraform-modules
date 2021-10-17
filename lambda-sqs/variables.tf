@@ -13,3 +13,8 @@ variable "runtime" {
 variable "filepath" {
   description = "The path of your function deployment package"
 }
+
+variable "delay_seconds" {
+  description = "The time in seconds that the delivery of all messages in the queue will be delayed"
+  default = 1
+}
