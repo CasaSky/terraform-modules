@@ -30,7 +30,7 @@ module "sqs" {
 module "sqs_dlq" {
   source = "../sqs"
 
-  name              = var.function_name
+  name              = "${var.function_name}-dlq"
   kms_master_key_id = var.kms_master_key_id
   delay_seconds     = var.delay_seconds
 

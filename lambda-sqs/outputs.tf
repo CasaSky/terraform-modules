@@ -13,3 +13,7 @@ output "runtime" {
 output "filepath" {
   value = var.filepath
 }
+
+output "sqs_arn" {
+  value = module.sqs.arn
+}
