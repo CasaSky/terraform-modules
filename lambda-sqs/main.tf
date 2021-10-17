@@ -27,12 +27,12 @@ module "sqs_dlq" {
   delay_seconds     = var.delay_seconds
 }
 
-resource "aws_iam_role_policy_attachment" "lambda_sqs_role_policy" {
+resource "aws_iam_role_policy_attachment" "this" {
   role       = module.lambda.lambda_execution_role_name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole"
 }
 
-resource "aws_lambda_event_source_mapping" "sqs_mapping" {
+resource "aws_lambda_event_source_mapping" "this" {
   event_source_arn = module.sqs.arn
   function_name    = module.lambda.arn
 }

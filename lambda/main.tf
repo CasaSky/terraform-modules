@@ -1,4 +1,4 @@
-resource "aws_iam_role" "lambda_execution" {
+resource "aws_iam_role" "this" {
   name = "lambda_execution"
 
   assume_role_policy = jsonencode({
@@ -15,13 +15,13 @@ resource "aws_iam_role" "lambda_execution" {
   })
 }
 
-resource "aws_lambda_function" "lambda" {
+resource "aws_lambda_function" "this" {
   filename      = var.filepath
   function_name = var.function_name
-  role          = aws_iam_role.lambda_execution.arn
+  role          = aws_iam_role.this.arn
 
   # package.Class
-  handler       = var.handler
+  handler = var.handler
 
   source_code_hash = filebase64sha256(var.filepath)
 
