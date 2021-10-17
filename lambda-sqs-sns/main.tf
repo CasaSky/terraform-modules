@@ -7,6 +7,8 @@ module "lambda_sqs" {
   runtime       = var.runtime
   memory_size   = var.memory_size
 
+  environment_variables = var.environment_variables
+
   tags = var.tags
 }
 
