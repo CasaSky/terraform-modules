@@ -19,7 +19,6 @@ module "lambda" {
   tags = var.tags
 
   depends_on = [
-    aws_iam_role_policy_attachment.this,
     aws_cloudwatch_log_group.this
   ]
 }
