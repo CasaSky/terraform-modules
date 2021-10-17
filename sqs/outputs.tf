@@ -3,5 +3,5 @@ output "name" {
 }
 
 output "arn" {
-  value = aws_sqs_queue.sqs.arn
+  value = aws_sqs_queue.this.arn
 }
