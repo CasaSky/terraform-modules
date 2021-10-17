@@ -10,6 +10,11 @@ module "lambda" {
   environment_variables = var.environment_variables
 
   tags = var.tags
+
+  depends_on = [
+    aws_iam_role_policy_attachment.cloudwatch_logs,
+    aws_cloudwatch_log_group.this,
+  ]
 }
 
 module "sqs" {
@@ -37,9 +42,20 @@ module "sqs_dlq" {
   tags = var.tags
 }
 
-resource "aws_iam_role_policy_attachment" "this" {
+# needed to manage the log group
+resource "aws_cloudwatch_log_group" "this" {
+  name              = "/aws/lambda/${var.function_name}"
+  retention_in_days = 7
+}
+
+resource "aws_iam_role_policy_attachment" "sqs" {
   role       = module.lambda.lambda_execution_role_name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole"
+}
+
+resource "aws_iam_role_policy_attachment" "cloudwatch_logs" {
+  role       = module.lambda.lambda_execution_role_name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
 resource "aws_lambda_event_source_mapping" "this" {
