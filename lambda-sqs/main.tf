@@ -7,9 +7,7 @@ module "lambda" {
   runtime       = var.runtime
   memory_size   = var.memory_size
 
-  environment = {
-    variables = var.environment_variables
-  }
+  environment_variables = var.environment_variables
 
   tags = var.tags
 }
