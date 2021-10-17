@@ -1,10 +1,14 @@
 # Collection of different terraform modules using aws as a cloud provider
 
-The source code of all modules can be used as a module in your project
+All modules are maintained by @CasaSky.
 
-Example configuration for using the lambda source code:
+You can integrate the managed terraform modules in your project by adding the source entry of the module you wish to use.
+
+Example configuration for using the lambda-sqs-sns source code:
 
 ```terraform
 module "lambda" {
-source = "git@github.com:casasky/terraform-modules.git//lambda-sqs"
+  source = "git@github.com:casasky/terraform-modules.git//lambda-sqs-sns"
 }
+
+You can check the demo [GitHub](https://github.com/CasaSky/lambda-demo-module-in-java) repository to see in detail how you can integrate a specific module.
