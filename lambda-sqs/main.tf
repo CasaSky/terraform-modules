@@ -5,18 +5,28 @@ module "lambda" {
   filepath      = var.filepath
   handler       = var.handler
   runtime       = var.runtime
+  memory_size   = var.memory_size
+
+  environment = {
+    variables = var.environment_variables
+  }
+
+  tags = var.tags
 }
 
 module "sqs" {
   source = "../sqs"
 
-  name              = var.function_name
-  kms_master_key_id = var.kms_master_key_id
-  delay_seconds     = var.delay_seconds
+  name                      = var.function_name
+  kms_master_key_id         = var.kms_master_key_id
+  delay_seconds             = var.delay_seconds
+  message_retention_seconds = var.message_retention_seconds
   redrive_policy = jsonencode({
     deadLetterTargetArn = module.sqs_dlq.name
     maxReceiveCount     = 5
   })
+
+  tags = var.tags
 }
 
 module "sqs_dlq" {
@@ -25,6 +35,8 @@ module "sqs_dlq" {
   name              = var.function_name
   kms_master_key_id = var.kms_master_key_id
   delay_seconds     = var.delay_seconds
+
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "this" {

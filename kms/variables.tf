@@ -10,3 +10,8 @@ variable "customer_master_key_spec" {
 variable "alias" {
   description = "The custom display name of your kms alias"
 }
+
+variable "tags" {
+  description = "A Map of tags to assign to the object"
+  default     = {}
+}

@@ -1,0 +1,1 @@
+Simple terraform module of an aws kms resource using alias

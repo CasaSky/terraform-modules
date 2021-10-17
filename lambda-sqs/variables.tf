@@ -10,6 +10,16 @@ variable "runtime" {
   description = "The runtime identifier of your function"
 }
 
+variable "memory_size" {
+  description = "The amount of memory in MB your lambda function can use at runtime"
+  default     = 128
+}
+
+variable "environment_variables" {
+  description = "Map of environment variables that are accessible from the function code during execution"
+  default     = {}
+}
+
 variable "filepath" {
   description = "The path of your function deployment package"
 }
@@ -19,7 +29,18 @@ variable "delay_seconds" {
   default     = 1
 }
 
+variable "message_retention_seconds" {
+  description = "The number of seconds, SQS retains a message"
+  # 1 day retention time
+  default = 604800
+}
+
 variable "kms_master_key_id" {
   description = "The ID of your CMK for server-side encryption"
   default     = ""
+}
+
+variable "tags" {
+  description = "A Map of tags to assign to the object"
+  default     = {}
 }
