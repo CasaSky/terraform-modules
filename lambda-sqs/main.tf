@@ -25,7 +25,9 @@ module "lambda" {
 
 module "sqs" {
   source = "../sqs"
-
+  providers = {
+    aws.alternate = aws.alternate
+  }
   name                      = var.function_name
   kms_master_key_id         = var.kms_master_key_id
   delay_seconds             = var.delay_seconds
