@@ -1,5 +1,8 @@
 module "lambda_sqs" {
   source = "../lambda-sqs"
+  providers = {
+    aws.alternate = aws.alternate
+  }
 
   function_name = var.function_name
   filepath      = var.filepath
