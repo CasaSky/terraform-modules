@@ -7,6 +7,9 @@ locals {
 
 module "lambda" {
   source = "../lambda"
+  providers = {
+    aws.alternate = aws.alternate
+  }
 
   function_name = var.function_name
   filepath      = var.filepath
@@ -56,17 +59,23 @@ module "sqs_dlq" {
 
 # needed to manage the log group
 resource "aws_cloudwatch_log_group" "this" {
+  provider = aws.alternate
+
   name              = "/aws/lambda/${var.function_name}"
   retention_in_days = 7
 }
 
 resource "aws_iam_role_policy_attachment" "this" {
+  provider = aws.alternate
+
   role       = module.lambda.lambda_execution_role_name
   count      = length(local.policy_arn_list)
   policy_arn = local.policy_arn_list[count.index]
 }
 
 resource "aws_lambda_event_source_mapping" "this" {
+  provider = aws.alternate
+
   event_source_arn = module.sqs.arn
   function_name    = module.lambda.arn
 }

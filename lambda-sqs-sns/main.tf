@@ -16,6 +16,8 @@ module "lambda_sqs" {
 }
 
 resource "aws_sqs_queue_policy" "this" {
+  provider = aws.alternate
+
   queue_url = module.lambda_sqs.sqs_id
 
   policy = <<POLICY
@@ -41,6 +43,8 @@ POLICY
 }
 
 resource "aws_sns_topic_subscription" "this" {
+  provider = aws.alternate
+
   topic_arn = var.sns_topic_arn
   protocol  = "sqs"
   endpoint  = module.lambda_sqs.sqs_arn

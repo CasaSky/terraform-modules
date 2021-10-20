@@ -1,4 +1,6 @@
 resource "aws_iam_role" "this" {
+  provider = aws.alternate
+
   name = "lambda_execution"
 
   assume_role_policy = jsonencode({
@@ -16,6 +18,8 @@ resource "aws_iam_role" "this" {
 }
 
 resource "aws_lambda_function" "this" {
+  provider = aws.alternate
+
   filename      = var.filepath
   function_name = var.function_name
   role          = aws_iam_role.this.arn

@@ -1,4 +1,6 @@
 resource "aws_kms_key" "this" {
+  provider = aws.alternate
+
   description              = var.description
   customer_master_key_spec = var.customer_master_key_spec
 
@@ -6,6 +8,8 @@ resource "aws_kms_key" "this" {
 }
 
 resource "aws_kms_alias" "this" {
+  provider = aws.alternate
+
   name          = "alias/${var.alias}"
   target_key_id = aws_kms_key.this.key_id
 }
