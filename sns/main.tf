@@ -25,9 +25,7 @@ data "aws_iam_policy_document" "sns_topic_policy" {
       test     = "StringEquals"
       variable = "AWS:SourceOwner"
 
-      values = [
-        var.account_ids,
-      ]
+      values = var.account_ids
     }
 
     effect = "Allow"
