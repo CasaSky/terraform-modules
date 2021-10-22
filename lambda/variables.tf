@@ -24,6 +24,11 @@ variable "environment_variables" {
   default     = {}
 }
 
+variable "timeout" {
+  description = "The timeout in seconds for your lambda"
+  default     = 10
+}
+
 variable "tags" {
   description = "A Map of tags to assign to the object"
   default     = {}

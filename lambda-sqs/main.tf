@@ -16,6 +16,7 @@ module "lambda" {
   handler       = var.handler
   runtime       = var.runtime
   memory_size   = var.memory_size
+  timeout       = var.timeout
 
   environment_variables = var.environment_variables
 

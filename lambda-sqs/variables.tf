@@ -24,6 +24,11 @@ variable "filepath" {
   description = "The path of your function deployment package"
 }
 
+variable "timeout" {
+  description = "The timeout in seconds for your lambda"
+  default     = 10
+}
+
 variable "delay_seconds" {
   description = "The time in seconds that the delivery of all messages in the queue will be delayed"
   default     = 1
