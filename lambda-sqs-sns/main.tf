@@ -66,7 +66,9 @@ resource "aws_iam_policy" "sns-publish" {
   "Statement": [
     {
       "Action": [
-        "sns:Publish"
+        "sns:Publish",
+        "sns:List*",
+        "sns:Get*"
       ],
       "Effect": "Allow",
       "Resource": "${var.publish_sns_topic_arn_list}"
