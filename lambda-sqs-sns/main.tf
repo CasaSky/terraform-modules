@@ -82,5 +82,5 @@ resource "aws_iam_role_policy_attachment" "sns-publish" {
   count = var.publish_sns_topic_arn_list ? 1 : 0
 
   role       = module.lambda_sqs.lambda_execution_role_name
-  policy_arn = aws_iam_policy.sns-publish.arn[0]
+  policy_arn = aws_iam_policy.sns-publish[0].arn
 }
