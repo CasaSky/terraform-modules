@@ -21,3 +21,7 @@ output "sqs_arn" {
 output "sqs_id" {
   value = module.sqs.id
 }
+
+output "lambda_execution_role_name" {
+  value = module.lambda.lambda_execution_role_name
+}

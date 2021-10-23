@@ -50,3 +50,33 @@ resource "aws_sns_topic_subscription" "this" {
   protocol  = "sqs"
   endpoint  = module.lambda_sqs.sqs_arn
 }
+
+// replace to a iam policy module with <<Policy as input
+resource "aws_iam_policy" "sns-publish" {
+  provider = aws.alternate
+
+  name        = "sns-publish"
+  description = "SNS publish policy"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "sns:Publish"
+      ],
+      "Effect": "Allow",
+      "Resource": "${var.publish_sns_topic_arn_list}"
+    }
+  ]
+}
+POLICY
+}
+
+resource "aws_iam_role_policy_attachment" "sns-publish" {
+  provider = aws.alternate
+
+  role       = module.lambda_sqs.lambda_execution_role_name
+  policy_arn = aws_iam_policy.sns-publish.arn
+}

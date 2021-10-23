@@ -49,6 +49,12 @@ variable "sns_topic_arn" {
   description = "The arn of the sns topic you want to subscribe to"
 }
 
+variable "publish_sns_topic_arn_list" {
+  description = "The list of arn of the sns topics where you want to publish messages"
+  type        = list(string)
+  default     = []
+}
+
 variable "tags" {
   description = "A Map of tags to assign to the object"
   default     = {}
