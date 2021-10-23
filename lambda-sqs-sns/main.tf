@@ -51,6 +51,10 @@ resource "aws_sns_topic_subscription" "this" {
   endpoint  = module.lambda_sqs.sqs_arn
 }
 
+locals {
+  sns_arn_list_json = jsonencode(var.publish_sns_topic_arn_list)
+}
+
 // replace to a iam policy module with <<Policy as input
 resource "aws_iam_policy" "sns-publish" {
   provider = aws.alternate
@@ -71,7 +75,7 @@ resource "aws_iam_policy" "sns-publish" {
         "sns:Get*"
       ],
       "Effect": "Allow",
-      "Resource": "${jsonencode(var.publish_sns_topic_arn_list)}"
+      "Resource": "${local.sns_arn_list_json}"
     }
   ]
 }
