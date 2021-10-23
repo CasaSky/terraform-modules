@@ -71,7 +71,7 @@ resource "aws_iam_policy" "sns-publish" {
         "sns:Get*"
       ],
       "Effect": "Allow",
-      "Resource": "${var.publish_sns_topic_arn_list}"
+      "Resource": "${jsonencode(var.publish_sns_topic_arn_list)}"
     }
   ]
 }
