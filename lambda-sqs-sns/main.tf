@@ -52,7 +52,7 @@ resource "aws_sns_topic_subscription" "this" {
 }
 
 locals {
-  sns_arn_list_json = jsonencode(var.publish_sns_topic_arn_list)
+  sns_arn_list_json = "[${var.publish_sns_topic_arn_list[0]}]"
 }
 
 // replace to a iam policy module with <<Policy as input
