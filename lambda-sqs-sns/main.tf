@@ -75,7 +75,7 @@ resource "aws_iam_policy" "sns-publish" {
         "sns:Get*"
       ],
       "Effect": "Allow",
-      "Resource": "${local.sns_arn_list_json}"
+      "Resource": "arn:aws:sns:eu-central-1:182355820400:*"
     }
   ]
 }
