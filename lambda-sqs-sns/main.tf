@@ -55,7 +55,7 @@ resource "aws_sns_topic_subscription" "this" {
 resource "aws_iam_policy" "sns-publish" {
   provider = aws.alternate
 
-  count = empty(var.publish_sns_topic_arn_list) ? 1 : 0
+  count = length(var.publish_sns_topic_arn_list) > 0 ? 1 : 0
 
   name        = "sns-publish"
   description = "SNS publish policy"
@@ -79,7 +79,7 @@ POLICY
 resource "aws_iam_role_policy_attachment" "sns-publish" {
   provider = aws.alternate
 
-  count = empty(var.publish_sns_topic_arn_list) ? 1 : 0
+  count = length(var.publish_sns_topic_arn_list) > 0 ? 1 : 0
 
   role       = module.lambda_sqs.lambda_execution_role_name
   policy_arn = aws_iam_policy.sns-publish[0].arn
